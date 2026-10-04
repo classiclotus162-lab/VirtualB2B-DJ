@@ -1,0 +1,59 @@
+{
+  "name": "virtual-b2b-dj",
+  "version": "0.4.0",
+  "description": "Virtual long-distance B2B DJ booth",
+  "main": "src/main.js",
+  "scripts": {
+    "start": "electron .",
+    "server": "node server/server.js",
+    "dev": "concurrently \"npm:server\" \"npm:start\"",
+    "build": "electron-builder"
+  },
+  "dependencies": {
+    "express": "^4.21.2",
+    "socket.io": "^4.8.1",
+    "osc": "^2.4.5",
+    "socket.io-client": "^4.8.1"
+  },
+  "devDependencies": {
+    "concurrently": "^9.1.2",
+    "electron": "^38.1.2",
+    "electron-builder": "^26.0.12"
+  },
+  "build": {
+    "appId": "com.virtualb2bdj.app",
+    "productName": "Virtual B2B DJ",
+    "files": [
+      "src/**/*",
+      "server/**/*",
+      "public/**/*",
+      "package.json"
+    ],
+    "win": {
+      "target": [
+        {
+          "target": "nsis",
+          "arch": [
+            "x64"
+          ]
+        },
+        {
+          "target": "portable",
+          "arch": [
+            "x64"
+          ]
+        }
+      ]
+    },
+    "nsis": {
+      "oneClick": false,
+      "allowToChangeInstallationDirectory": true,
+      "createDesktopShortcut": true,
+      "createStartMenuShortcut": true,
+      "shortcutName": "Virtual B2B DJ"
+    },
+    "portable": {
+      "artifactName": "Virtual-B2B-DJ-Portable.exe"
+    }
+  }
+}
